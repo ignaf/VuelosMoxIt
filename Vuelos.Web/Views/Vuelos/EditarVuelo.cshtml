@@ -1,0 +1,37 @@
+﻿@model List<Vuelo>
+
+<h2 class="titulo">Modificar</h2>
+
+@if (Model.Count == 0)
+{
+    <h4 class="text-danger">No hay vuelos registrados.</h4>
+    <a href="~/Vuelos/Form" class="btn btn-success">Agregar Vuelo</a>
+
+}
+@if (Model.Count > 0)
+{
+
+    <form action="/vuelos/editar" class="formularios" method="post">
+        <div class="form-group">
+            <select id="idVuelo" class="custom-select">
+                <option>Seleccione un vuelo</option>
+                @foreach (var vuelo in Model)
+                {
+                    <option value="/vuelos/editar/@vuelo.Id">@vuelo.NumeroDeVuelo</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <a href="" class="btn btn-outline-success" id="boton-editar">Editar</a>
+        </div>
+    </form>
+
+    @section scripts{
+        <script>
+            $("#idVuelo").on('change', function () {
+                var valor_seleccionado = this.value;
+                $("#boton-editar").attr("href", valor_seleccionado)
+            })
+        </script>
+    }
+}

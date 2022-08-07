@@ -1,0 +1,27 @@
+﻿@model List<Vuelo>
+
+<h2 class="titulo">Baja</h2>
+
+@if (Model.Count == 0)
+{
+    <h4 class="text-danger">No hay vuelos registrados.</h4>
+    <a href="~/Vuelos/Form" class="btn btn-success">Agregar Vuelo</a>
+
+}
+@if (Model.Count > 0)
+{
+    <form action="/vuelos/eliminar" class="formularios" method="post">
+        <div class="form-group">
+            <select name="id" class="custom-select">
+                @foreach (var vuelo in Model)
+                {
+                    <option value="@vuelo.Id">@vuelo.NumeroDeVuelo</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </div>
+
+    </form>
+}

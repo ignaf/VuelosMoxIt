@@ -1,0 +1,46 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+body {
+    font-family: 'Roboto', sans-serif;
+    background: rgb(255, 253, 190);
+    background: linear-gradient(90deg, rgba(255, 253, 190, 1) 0%, rgba(251, 209, 255, 1) 100%);
+}
+
+.boton-agregar {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.tabla-vuelos {
+    background: rgb(0 0 0 / 18%);
+    border: none;
+}
+
+.th-centrar{
+    text-align:center;
+}
+
+.boton-tabla{
+    margin:2px;
+}
+
+.formularios {
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-49%, -49%);
+}
+
+.nav-titulo{
+    color: #ff6464 !important;
+}
+
+.navbar-bg {
+    background-color: #ff3b0045
+}
+
+.titulo {
+    text-align: center;
+    margin-top: 30px;
+    letter-spacing: 3px;
+}

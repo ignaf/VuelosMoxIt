@@ -1,0 +1,71 @@
+﻿@model List<Vuelo>
+
+@section links{
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <link href="~/css/tables.css" rel="stylesheet" />
+}
+<h2 class="titulo">Vuelos</h2>
+
+@if (Model.Count == 0)
+{
+    <h4 class="text-danger">No hay vuelos registrados.</h4>
+}
+
+<a href="~/Vuelos/Form" class="btn btn-success boton-agregar">Agregar Vuelo</a>
+
+@if (Model.Count > 0)
+{
+    <table class="table table-hover tabla-vuelos" id="vuelos">
+        <thead>
+        <th class="th-centrar">Fecha</th>
+        <th class="th-centrar">Horario llegada</th>
+        <th class="th-centrar">Vuelo</th>
+        <th class="th-centrar">Línea Aerea</th>
+        <th class="th-centrar">Demorado</th>
+        <th></th>
+        </thead>
+        <tbody>
+            @foreach (var vuelo in Model)
+            {
+                <tr>
+                    <td class="th-centrar">@vuelo.FechaYHorarioDeLlegada.ToString("dd/MM/yyyy")</td>
+                    <td class="th-centrar">@vuelo.FechaYHorarioDeLlegada.ToString("HH:mm")</td>
+                    <td class="th-centrar">@vuelo.NumeroDeVuelo</td>
+                    <td class="th-centrar">@vuelo.LineaAerea</td>
+                    @if (vuelo.Demorado == true)
+                    {
+                        <td class="th-centrar">Si</td>
+                    }
+                    @if (vuelo.Demorado == false)
+                    {
+                        <td class="th-centrar">No</td>
+                    }
+                    <td><a href="vuelos/Editar/@vuelo.Id" class="btn btn-outline-primary boton-tabla">Editar</a> <button class="btn btn-outline-danger js-eliminar boton-tabla" data-vuelo-id=@vuelo.Id>Eliminar</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $("#vuelos").DataTable();
+
+            $("#vuelos").on("click", ".js-eliminar", function () {
+                var button = $(this);
+
+                if (confirm("¿Está seguro de que desea eliminar éste vuelo?")) {
+                    $.ajax({
+                        url: "/vuelos/eliminar/" + button.attr("data-vuelo-id"),
+                        method: "POST"
+                    })
+                }
+            })
+        })
+    </script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+
+}

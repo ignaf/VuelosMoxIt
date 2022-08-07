@@ -1,0 +1,34 @@
+﻿@model VueloViewModel
+
+<h2 class="titulo">Nuevo Vuelo</h2>
+
+<form action="/Vuelos/GuardarVuelo" class="formularios" method="post">
+    <div class="form-group">
+        <label asp-for="NumeroDeVuelo"></label>
+        <input asp-for="NumeroDeVuelo" type="text" class="form-control" />
+        <span asp-validation-for="NumeroDeVuelo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FechaYHorarioDeLlegada"></label>
+        <input asp-for="FechaYHorarioDeLlegada" type="datetime-local" class="form-control" />
+        <span asp-validation-for="FechaYHorarioDeLlegada" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LineaAerea"></label>
+        <input asp-for="LineaAerea" type="text" class="form-control" />
+        <span asp-validation-for="LineaAerea" class="text-danger"></span>
+    </div>
+    <div class="custom-checkbox">
+        <label asp-for="Demorado">
+            @Html.CheckBoxFor(m => m.Demorado) Demorado
+        </label>
+        <span asp-validation-for="Demorado" class="text-danger"></span>
+    </div>
+    <input type="submit" class="btn btn-outline-primary" name="Guardar" value="Guardar" />
+    
+    @Html.AntiForgeryToken()
+
+
+
+</form>
+
