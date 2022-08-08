@@ -60,6 +60,8 @@
                     $.ajax({
                         url: "/vuelos/eliminar/" + button.attr("data-vuelo-id"),
                         method: "POST"
+                    }).done(function () {
+                        toastr.success("Vuelo eliminado.");                            
                     })
                 }
             })
